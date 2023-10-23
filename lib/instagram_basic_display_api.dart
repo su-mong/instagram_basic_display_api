@@ -15,23 +15,23 @@ class InstagramUser {
 
 class InstagramBasicDisplayApi {
   static const MethodChannel _channel =
-      const MethodChannel('instagram_basic_display_api');
+  const MethodChannel('instagram_basic_display_api');
 
   //ignore: close_sinks
   static StreamController<InstagramUser> _userUpdated =
-      StreamController<InstagramUser>();
+  StreamController<InstagramUser>.broadcast();
 
   //ignore: close_sinks
   static StreamController<List<MediaItem>> _mediasUpdated =
-      StreamController<List<MediaItem>>();
+  StreamController<List<MediaItem>>.broadcast();
 
   //ignore: close_sinks
   static StreamController<List<AlbumDetailItem>> _albumDetailUpdated =
-      StreamController<List<AlbumDetailItem>>();
+  StreamController<List<AlbumDetailItem>>.broadcast();
 
   //ignore: close_sinks
   static StreamController<MediaItem> _mediaItemUpdated =
-  StreamController<MediaItem>();
+  StreamController<MediaItem>.broadcast();
 
   static Stream<InstagramUser>? broadcastInstagramUserStream;
 
