@@ -76,7 +76,7 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
         }
     }
 
-    fun startListening(messenger: BinaryMessenger?) {
+    fun startListening(messenger: BinaryMessenger) {
         if (channel != null) {
             Log.wtf(TAG, "Setting a method call handler before the last was disposed.")
             stopListening()
