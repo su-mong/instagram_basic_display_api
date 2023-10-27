@@ -32,6 +32,7 @@ class DataRepository(
             throw Exception("TOKEN_EXPIRED")
         }
         return withContext(Dispatchers.IO) {
+            Log.d(TAG, "getUserInfo(accessToken = ${preference.getString(Constants.PREF_KEY_ACCESS_TOKEN, "")!!})")
             return@withContext graphInstagramService.getUserInfo(
                 fields = "id,username,account_type",
                 accessToken = preference.getString(Constants.PREF_KEY_ACCESS_TOKEN, "")!!
