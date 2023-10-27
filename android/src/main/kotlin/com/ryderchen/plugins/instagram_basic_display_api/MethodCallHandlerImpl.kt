@@ -16,6 +16,7 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
     init {
         instagramBasicDisplayApi.startListening(
             userUpdated = {
+                Log.d(TAG, "userUpdated(channel Exists : ${channel}) ^^ : ${hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType)}")
                 channel?.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
             },
             mediasUpdated = {
@@ -77,6 +78,8 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
     }
 
     fun startListening(messenger: BinaryMessenger) {
+        Log.d(TAG, "startListening")
+
         if (channel != null) {
             Log.wtf(TAG, "Setting a method call handler before the last was disposed.")
             stopListening()
