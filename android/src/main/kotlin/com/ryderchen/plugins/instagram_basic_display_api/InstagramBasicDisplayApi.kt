@@ -63,8 +63,11 @@ class InstagramBasicDisplayApi(
     fun getInstagramUser(){
         runBlocking {
             try {
-                userUpdated(repository.getUserInfo())
+                val apiCallResult = repository.getUserInfo();
+                userUpdated(apiCallResult)
+                Log.d(TAG, "User : ${apiCallResult}")
             } catch (e: Exception) {
+                Log.e(TAG, e.message ?: "UNKNOWN_EXCEPTION")
                 errorUpdated(e.message ?: "UNKNOWN_EXCEPTION")
             }
         }
