@@ -90,6 +90,8 @@ class InstagramBasicDisplayApi {
         _mediaItemUpdated.stream.asBroadcastStream();
 
     _channel.setMethodCallHandler((call) async {
+      print('aaaaaaaa call.method : ${call.method}');
+
       switch (call.method) {
         case "userUpdated":
           print("userUpdated id = ${call.arguments["ID"]}");
