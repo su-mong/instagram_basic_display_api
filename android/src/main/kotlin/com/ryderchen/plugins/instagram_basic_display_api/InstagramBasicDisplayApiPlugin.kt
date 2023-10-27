@@ -24,6 +24,17 @@ class InstagramBasicDisplayApiPlugin : FlutterPlugin, ActivityAware {
     Log.d(TAG, "onAttachedToEngine #3")
   }
 
+  companion object {
+    @JvmStatic
+    fun registerWith(registrar: Registrar) {
+      Log.d(TAG, "onAttachedToEngine #1")
+      methodCallHandler = MethodCallHandlerImpl(instagramBasicDisplayApi)
+      Log.d(TAG, "onAttachedToEngine #2")
+      methodCallHandler.startListening(flutterPluginBinding.binaryMessenger)
+      Log.d(TAG, "onAttachedToEngine #3")
+    }
+  }
+
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     methodCallHandler.stopListening()
   }
