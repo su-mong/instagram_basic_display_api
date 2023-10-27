@@ -14,8 +14,11 @@ class InstagramBasicDisplayApiPlugin : FlutterPlugin, ActivityAware {
   private val instagramBasicDisplayApi: InstagramBasicDisplayApi = getKoinInstance()
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    Log.d(TAG, "onAttachedToEngine #1")
     methodCallHandler = MethodCallHandlerImpl(instagramBasicDisplayApi)
+    Log.d(TAG, "onAttachedToEngine #2")
     methodCallHandler.startListening(flutterPluginBinding.binaryMessenger)
+    Log.d(TAG, "onAttachedToEngine #3")
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
