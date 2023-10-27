@@ -132,8 +132,12 @@ class InstagramBasicDisplayApi(
             if (data != null && data.getBooleanExtra(GET_ACCESS_TOKEN_RESULT, false)) {
                 runBlocking {
                     try {
-                        userUpdated(repository.getUserInfo())
+                        Log.d(TAG, "onActivityResult.userUpdated")
+                        val userResult = repository.getUserInfo();
+                        userUpdated(userResult)
+                        Log.d(TAG, "onActivityResult.userUpdated result : ${userResult}")
                     } catch (e: Exception) {
+                        Log.e(TAG, "onActivityResult.userUpdated error : ${e.message ?: "UNKNOWN_EXCEPTION"}")
                         errorUpdated(e.message ?: "UNKNOWN_EXCEPTION")
                     }
                 }
