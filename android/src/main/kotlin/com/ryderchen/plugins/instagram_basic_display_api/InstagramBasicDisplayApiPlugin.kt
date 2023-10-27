@@ -1,5 +1,6 @@
 package com.ryderchen.plugins.instagram_basic_display_api
 
+import android.util.Log
 import androidx.annotation.NonNull
 import com.ryderchen.plugins.instagram_basic_display_api.utils.getKoinInstance
 
