@@ -11,6 +11,8 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 /** InstagramBasicDisplayApiPlugin */
 class InstagramBasicDisplayApiPlugin : FlutterPlugin, ActivityAware {
 
+  private val TAG = javaClass.name
+
   private lateinit var methodCallHandler: MethodCallHandlerImpl
   private val instagramBasicDisplayApi: InstagramBasicDisplayApi = getKoinInstance()
 
