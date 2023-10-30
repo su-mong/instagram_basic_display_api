@@ -17,7 +17,7 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
         instagramBasicDisplayApi.startListening(
             userUpdated = {
                 Log.d(TAG, "userUpdated(channel Exists : ${channel}) ^^ : ${hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType)}")
-                channel!!.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
+                channel?.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
             },
             mediasUpdated = {
                 channel?.invokeMethod("mediasUpdated", hashMapOf("DATA" to it))

@@ -88,6 +88,7 @@ class InstagramBasicDisplayApi {
         _albumDetailUpdated.stream.asBroadcastStream();
     _broadcastMediaItemStream =
         _mediaItemUpdated.stream.asBroadcastStream();
+    print('aaaaaaaa initialize() worked');
 
     _channel.setMethodCallHandler((call) async {
       print('aaaaaaaa call.method : ${call.method}');
