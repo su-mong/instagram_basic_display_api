@@ -21,6 +21,13 @@ import com.ryderchen.plugins.instagram_basic_display_api.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AccessTokenActivity : AppCompatActivity() {
+    companion object {
+        var flutterEngineInstance: FlutterEngine? = null
+    }
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        flutterEngineInstance = flutterEngine
+    }
 
     private lateinit var clientId: String
     private lateinit var clientSecret: String
