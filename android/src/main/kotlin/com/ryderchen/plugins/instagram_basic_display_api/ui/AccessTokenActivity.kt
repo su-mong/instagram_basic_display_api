@@ -18,16 +18,14 @@ import androidx.lifecycle.Observer
 import com.ryderchen.plugins.instagram_basic_display_api.R
 import com.ryderchen.plugins.instagram_basic_display_api.data.viewmodel.AccessTokenViewModel
 import com.ryderchen.plugins.instagram_basic_display_api.utils.Constants
+// import io.flutter.embedding.engine.FlutterEngine
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AccessTokenActivity : AppCompatActivity() {
-    companion object {
-        var flutterEngineInstance: FlutterEngine? = null
-    }
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+    /*override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         flutterEngineInstance = flutterEngine
-    }
+    }*/
 
     private lateinit var clientId: String
     private lateinit var clientSecret: String
@@ -176,6 +174,8 @@ class AccessTokenActivity : AppCompatActivity() {
     }
 
     companion object {
+        // var flutterEngineInstance: FlutterEngine? = null
+
         private const val CLIENT_ID_EXTRA = "client_id"
         private const val CLIENT_SECRET_EXTRA = "client_secret"
         private const val REDIRECT_URI_EXTRA = "redirect_uri"

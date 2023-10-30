@@ -1,11 +1,13 @@
 package com.ryderchen.plugins.instagram_basic_display_api
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.annotation.NonNull
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-
+// import com.ryderchen.plugins.instagram_basic_display_api.ui.AccessTokenActivity
 
 class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasicDisplayApi) :
     MethodChannel.MethodCallHandler {
@@ -16,8 +18,10 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
     init {
         instagramBasicDisplayApi.startListening(
             userUpdated = {
-                Log.d(TAG, "userUpdated(channel Exists : ${channel}) ^^ : ${hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType)}")
-                channel?.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
+                Handler(Looper.getMainLooper()).post {
+                    Log.d(TAG, "userUpdated(channel Exists : ${channel}) ^^ : ${hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType)}")
+                    channel?.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
+                }
             },
             mediasUpdated = {
                 channel?.invokeMethod("mediasUpdated", hashMapOf("DATA" to it))
@@ -83,15 +87,15 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
             stopListening()
         }
 
-        channel = MethodChannel(
+        /*channel = MethodChannel(
             AccessTokenActivity.flutterEngineInstance.dartExecutor.binaryMessenger,
             "instagram_basic_display_api"
         ).apply {
             setMethodCallHandler(this@MethodCallHandlerImpl)
-        }
-        /*channel = MethodChannel(messenger, "instagram_basic_display_api").apply {
-            setMethodCallHandler(this@MethodCallHandlerImpl)
         }*/
+        channel = MethodChannel(messenger, "instagram_basic_display_api").apply {
+            setMethodCallHandler(this@MethodCallHandlerImpl)
+        }
     }
 
     fun stopListening() {
