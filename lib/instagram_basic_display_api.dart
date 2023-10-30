@@ -15,7 +15,7 @@ class InstagramUser {
 
 class InstagramBasicDisplayApi {
   static const MethodChannel _channel =
-  const MethodChannel('instagram_basic_display_api');
+  const MethodChannel('com.ryderchen.plugins.instagram_basic_display_api');
 
   //ignore: close_sinks
   static StreamController<InstagramUser> _userUpdated =

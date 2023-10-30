@@ -110,7 +110,7 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
         ).apply {
             setMethodCallHandler(this@MethodCallHandlerImpl)
         }*/
-        channel = MethodChannel(messenger, "instagram_basic_display_api").apply {
+        channel = MethodChannel(messenger, "com.ryderchen.plugins.instagram_basic_display_api").apply {
             setMethodCallHandler(this@MethodCallHandlerImpl)
         }
     }
