@@ -22,11 +22,11 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AccessTokenActivity : FlutterActivity() {
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+class AccessTokenActivity : AppCompatActivity() {
+    /*override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         flutterEngineInstance = flutterEngine
-    }
+    }*/
 
     private lateinit var clientId: String
     private lateinit var clientSecret: String
@@ -175,7 +175,7 @@ class AccessTokenActivity : FlutterActivity() {
     }
 
     companion object {
-        var flutterEngineInstance: FlutterEngine? = null
+        // var flutterEngineInstance: FlutterEngine? = null
 
         private const val CLIENT_ID_EXTRA = "client_id"
         private const val CLIENT_SECRET_EXTRA = "client_secret"
