@@ -20,7 +20,18 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
             userUpdated = {
                 Handler(Looper.getMainLooper()).post {
                     Log.d(TAG, "userUpdated(channel Exists : ${channel}) ^^ : ${hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType)}")
-                    channel?.invokeMethod("userUpdated", hashMapOf("ID" to it.id, "USER_NAME" to it.username, "ACCOUNT_TYPE" to it.accountType))
+                    try {
+                        channel?.invokeMethod(
+                            "userUpdated",
+                            hashMapOf(
+                                "ID" to it.id,
+                                "USER_NAME" to it.username,
+                                "ACCOUNT_TYPE" to it.accountType
+                            )
+                        )
+                    } catch (e: Error) {
+                        Log.e(TAG, "userUpdated Error : $e")
+                    }
                 }
             },
             mediasUpdated = {
@@ -103,6 +114,7 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
             Log.d(TAG, "Tried to stop listening when no MethodChannel had been initialized.")
             return
         }
+        Log.e(TAG, "stopListening()")
         channel!!.setMethodCallHandler(null)
         channel = null
     }
