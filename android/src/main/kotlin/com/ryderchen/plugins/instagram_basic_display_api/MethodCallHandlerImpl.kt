@@ -7,7 +7,7 @@ import androidx.annotation.NonNull
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-// import com.ryderchen.plugins.instagram_basic_display_api.ui.AccessTokenActivity
+import com.ryderchen.plugins.instagram_basic_display_api.ui.AccessTokenActivity
 
 class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasicDisplayApi) :
     MethodChannel.MethodCallHandler {
@@ -98,15 +98,21 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
             stopListening()
         }
 
-        /*channel = MethodChannel(
-            AccessTokenActivity.flutterEngineInstance.dartExecutor.binaryMessenger,
+        if(AccessTokenActivity.flutterEngineInstance == null) {
+            Log.wtf(TAG, "AccessTokenActivity.flutterEngineInstance not exist;;;")
+            stopListening()
+            return
+        }
+
+        channel = MethodChannel(
+            AccessTokenActivity.flutterEngineInstance!!.dartExecutor.binaryMessenger,
             "instagram_basic_display_api"
         ).apply {
             setMethodCallHandler(this@MethodCallHandlerImpl)
-        }*/
-        channel = MethodChannel(messenger, "instagram_basic_display_api").apply {
-            setMethodCallHandler(this@MethodCallHandlerImpl)
         }
+        /*channel = MethodChannel(messenger, "instagram_basic_display_api").apply {
+            setMethodCallHandler(this@MethodCallHandlerImpl)
+        }*/
     }
 
     fun stopListening() {
@@ -114,7 +120,6 @@ class MethodCallHandlerImpl(private val instagramBasicDisplayApi: InstagramBasic
             Log.d(TAG, "Tried to stop listening when no MethodChannel had been initialized.")
             return
         }
-        Log.e(TAG, "stopListening()")
         channel!!.setMethodCallHandler(null)
         channel = null
     }
